@@ -16,18 +16,18 @@ public class Client implements Comparable {
      * @param c Le client avec lequel on compare
      * @return Ce client est inférieur ou non à l'autre client.
      */
-    public boolean compareTo(Client c) {
-        return this.nom.compareTo(c.nom);
+    public int compareTo(Object o) {
+        return this.nom.compareTo(((Client) o).nom);
     }
 
     public boolean equals(Object o) {
         return (o instanceof Client)
-        && (this.nom.equals( (Client)o.nom ))
-        && (this.prenom.equals( (Client)o.prenom ));
+        && (this.nom.equals( ((Client) o).nom ))
+        && (this.prenom.equals( ((Client) o).prenom ));
     }
 
     public String toString() {
-        return String.format("(%s, %s, %d)", this.prenom, this.nom, this.codePostal);
+        return String.format("(%s, %s, %d)", this.nom, this.prenom, this.codePostal);
     }
 
     public int getCodePostal() {

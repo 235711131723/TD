@@ -21,7 +21,7 @@ public class FileAttente {
     }
 
     public Client head() {
-        if(!this.clients.isEmpty()) return null;
+        if(this.clients.isEmpty()) return null;
         return this.clients.get(0);
     }
 
@@ -33,7 +33,7 @@ public class FileAttente {
         return this.clients.toString();
     }
 
-    public String listeClientsLocalite() {
+    public String listeClientLocalite() {
         ComparateurClient comparateur = new ComparateurClient();
         SortedSet<Client> clientsTries = new TreeSet<>(comparateur);
         clientsTries.addAll(this.clients);

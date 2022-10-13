@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class FileAttenteEvoluee extends FileAttente {
     /**
      * Par héritage, nous avons donc :
@@ -20,8 +22,8 @@ public class FileAttenteEvoluee extends FileAttente {
         /**
          * On rajoute les clients supprimés dans la boucle précédente.
          */
-        for(Client client: clients) {
-            this.add(client);
+        for(int i = 0; i < clients.size(); i++) {
+            this.add(clients.get(i));
         }
 
         return clients.size();
