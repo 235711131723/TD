@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.TreeSet;
+import java.util.SortedSet;
 
 public class FileAttente {
     private ArrayList<Client> clients;
@@ -29,5 +31,12 @@ public class FileAttente {
 
     public String listeClient() {
         return this.clients.toString();
+    }
+
+    public String listeClientsLocalite() {
+        ComparateurClient comparateur = new ComparateurClient();
+        SortedSet<Client> clientsTries = new TreeSet<>(comparateur);
+        clientsTries.addAll(this.clients);
+        return clientsTries.toString();
     }
 }
