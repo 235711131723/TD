@@ -1,0 +1,64 @@
+\documentclass{article}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\newcommand{\plagiatWikipedia}{\footnote{\underline{Source} : Wikipedia}}
+\newcommand{\plagiatBibmath}{\footnote{\underline{Source} : Bibmath}}
+
+\lstset{
+    numbers=left
+}
+
+\title{Complexité}
+\author{235711131723}
+
+\begin{document}
+    \maketitle
+
+    \section{Différents algorithmes de tri}
+
+    \subsection{Tri à bulle}
+
+    \paragraph{Principe.}
+
+    \begin{itemize}
+        \item On parcourt le tableau et on permute une case avec la suivante si elles ne sont pas dans le bon ordre
+        \item À la fin du parcours, si on fait une permutation, on recommence le parcours.
+    \end{itemize}
+
+    \paragraph{Théorème.} Le tri à bulle termine correctement en $\Theta(n^2)$.
+
+    \paragraph{Algorithme.}
+
+    \underline{Entrée} : Tableau d'entiers T de taille $n$.
+
+    \begin{lstlisting}
+Bool Permutation = Vrai
+Tant Que(Permutation):
+    Permutation = Faux
+    Pour(i = 0; i < n - 1; i = i + 1):
+        Si(T[i] > T[i + 1]):
+            temp = T[i]
+            T[i] = T[i + 1]
+            T[i + 1] = temp
+            Permutation = Vrai
+        Fin Si
+    Fin Pour
+Fin Tant Que
+    \end{lstlisting}
+
+    \paragraph{Démonstration du théorème.}
+
+    Posons l'invariant ($j \in \mathbb{N}$) $H(i)$ : "Après $i$ exécution de la boucle \textbf{Tant Que}, les $j$ dernières cases du tableau contiennent les plus grands éléments triés par ordre croissant."\\
+
+    \begin{itemize}
+        \item \textbf{Initialisation de l'invariant.} Quand on arrive à la première exécution de la ligne 3, on a $j = 0$ et l'invariant est totalement vrai.
+    \end{itemize}
+\end{document}
