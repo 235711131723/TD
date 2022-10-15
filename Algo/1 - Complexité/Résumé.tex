@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\newcommand{\plagiatWikipedia}{\footnote{\underline{Source} : Wikipedia}}
+\newcommand{\plagiatBibmath}{\footnote{\underline{Source} : Bibmath}}
+
+\lstset{
+    numbers=left
+}
+
+\title{Complexité}
+\author{235711131723}
+
+\begin{document}
+    \maketitle
+
+    \section{Avertissement}
+
+    Ceci n'est qu'un résumé foireux rédigé par un étudiant sans aucune expérience dans le domaine.
+
+    À prendre avec des pincettes. 
+
+    \section{Comparaison de fonction}
+
+    \subsection{Relation de domination}
+
+    Soit $f$ est $g$ deux applications de $\mathbb{N}$ dans $\mathbb{N}$. Alors on dit que $f$ est dominée par $g$ (noté $f = O(g)$ dans la notation de Landau) si et seulement si $\exists c \in \mathbb{R^*_+}, \exists N \in \mathbb{N}$ tel que $\forall n \ge N, f(n) \le cg(n)$.\\
+
+    \begin{itemize}
+        \item On note $f = \Omega(g)$ si et seulement si $g = O(f)$.
+        \item On note $f = \Theta(g)$ si et seulement si $f = O(g)$ et $f = \Omega(g)$.
+    \end{itemize}
+
+    % Exemple
+    \paragraph{Exemple.}
+
+    Posons $\begin{array}{rcl}
+        f : \mathbb{N} & \to & \mathbb{N}\\
+        n & \to & 5n + 6\\
+    \end{array}$
+    et
+    $\begin{array}{rcl}
+        g : \mathbb{N} & \to & \mathbb{N}\\
+        n & \to & n + 3\\
+    \end{array}$. Montrons que $f = \Theta(g)$.
+
+    \paragraph{$ \Rightarrow f = O(g)$.}
+
+    Posons $c = 5$. Étudions le signe de $f(n) - cg(n)$ pour tout entier naturel $n$. Alors :
+    \[\forall n \in \mathbb{N}, f(n) - cg(n) = 5n + 6 - (5n + 15) = -9 \le 0\]
+
+    On prend alors $N = 0$. Alors on a bien $\forall n \ge N, f(n) - cg(n) \le 0$. Donc $f = O(g)$.
+
+    \paragraph{$ \Rightarrow f = \Omega(g)$. (autrement dit, $g = O(f)$).}
+
+    Posons $c = 1$. Étudions le signe de $g(n) - cg(n)$ pour tout entier naturel $n$. Alors :
+    \[\forall n \in \mathbb{N}, g(n) - cf(n) = n + 3 - (5n + 6) = -4n - 3 \le 0\]
+
+    On prend alors $N = 0$. Alors on a bien $\forall n \ge N, g(n) - cf(n) \le 0$. Donc $f = \omega(g)$.
+
+    \paragraph{Conclusion.} On a bien $f = \Theta(g)$.
+
+
+    \section{Complexité}
+
+    \subsection{Complexité temporelle}
+
+    En algorithmique, la complexité en temps est une mesure du temps utilisé par un algorithme, exprimé comme fonction de la taille de l'entrée. Le temps compte le nombre d'étapes de calcul avant d'arriver à un résultat.
+
+    Usuellement le temps correspondant à des entrées de taille n est le temps le plus long parmi les temps d’exécution des entrées de cette taille ; on parle de complexité dans le pire cas. Les études de complexité portent dans la majorité des cas sur le comportement asymptotique, lorsque la taille des entrées tend vers l'infini, et l'on utilise couramment les notations grand O de Landau.
+
+    La complexité en temps étant la mesure la plus courante en algorithmique, on parle parfois simplement de la complexité d'un algorithme, mais il existe d'autres mesures comme la complexité en espace.\plagiatWikipedia 
+
+\end{document}
