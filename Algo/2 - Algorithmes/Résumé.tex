@@ -8,6 +8,7 @@
 \usepackage{array}
 \usepackage{xcolor}
 \usepackage{listings}
+\usepackage{verbatim}
 
 \newcommand{\plagiatWikipedia}{\footnote{\underline{Source} : Wikipedia}}
 \newcommand{\plagiatBibmath}{\footnote{\underline{Source} : Bibmath}}
@@ -40,15 +41,16 @@
     \underline{Entrée} : Tableau d'entiers T de taille $n$.
 
     \begin{lstlisting}
-Bool Permutation = Vrai
+Entier temp
+Bool Permutation := Vrai
 Tant Que(Permutation):
-    Permutation = Faux
-    Pour(i = 0; i < n - 1; i = i + 1):
+    Permutation := Faux
+    Pour(i := 0; i < n - 1; i := i + 1):
         Si(T[i] > T[i + 1]):
-            temp = T[i]
-            T[i] = T[i + 1]
-            T[i + 1] = temp
-            Permutation = Vrai
+            temp := T[i]
+            T[i] := T[i + 1]
+            T[i + 1] := temp
+            Permutation := Vrai
         Fin Si
     Fin Pour
 Fin Tant Que
@@ -56,9 +58,28 @@ Fin Tant Que
 
     \paragraph{Démonstration du théorème.}
 
-    Posons l'invariant ($j \in \mathbb{N}$) $H(i)$ : "Après $i$ exécution de la boucle \textbf{Tant Que}, les $j$ dernières cases du tableau contiennent les plus grands éléments triés par ordre croissant."\\
+    Posons $j \in \mathbb{N}$, pour $0 \le k \le n - 1$, $H(k)$ : "Après $k$ exécution de la boucle \textbf{Tant Que}, les $j$ dernières cases du tableau contiennent les $j$ plus grands éléments triés par ordre croissant.".\\
 
     \begin{itemize}
-        \item \textbf{Initialisation de l'invariant.} Quand on arrive à la première exécution de la ligne 3, on a $j = 0$ et l'invariant est totalement vrai.
+        \item \textbf{Initialisation de l'invariant.} Quand on arrive à la première exécution de la ligne 3, on a $j = 0$ et l'invariant est trivialement vrai.
+        \item \textbf{Sortie de la boucle \underline{Tant Que}.} On a \verb|Permutation := Faux|. Puisqu'on avait initialement \verb|Permutation := Vrai| alors $j > 0$.
     \end{itemize}
+
+    \paragraph{Tableau déjà entièrement trié.} Supposons que $j = n$. Alors l'invariant $H(k)$ devient, pour $0 \le k \le n - 1$, $H(k)$ : "Le tableau est trié par ordre croissant à la k-ième itération.".
+
+    \begin{itemize}
+        \item Lors de la première itération de la boucle \textbf{Tant Que}, le test de la ligne 6 est toujours faux.
+        \item On sort de cette boucle à la fin de la première itération. Je termine en $O(n)$.
+        \item Je termine.
+    \end{itemize}
+
+    \paragraph{Invariant de la boucle \textbf{Pour}.} Supposons l'invariant $H(k)$ vrai pour $k \in \mathbb{N}$ et supposons que nous sommes à la ligne 4 du code avec \verb|Permutation := Vrai|. Montrons que $H(k+1)$ est vrai.\\
+
+    Posons $M = \max\limits_{i \in [\![0, n - (j + 1)]\!]} T[i]$ et $m$ tel que $T[m] = M$. Posons $H'(i)$ : "Les dernières cases du tableau sont triés par ordre croissant et $T[\min(n - (j + 1), \max(i, m))] = M$.".
+
+    \paragraph{Initialisation.} Pour $i = 0$ et $H(k)$, les $j$ dernières cases sont triées et contiennent $T[\min(n - (j + 1), \max(i, m))] = M$. De plus, $\min(n - (j + 1), \max(i, m)) = m$ et $T[m] = M$.
+
+    \subsection{Tri par insertion}
+
+    \paragraph{Principe.}
 \end{document}
